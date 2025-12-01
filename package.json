@@ -1,24 +1,35 @@
 {
-  "name": "02-node",
+  "name": "todolist_express",
   "version": "1.0.0",
-  "main": "server.ts",
+  "description": "",
+  "main": "app.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc-watch --onSuccess \"nodemon dist/server.js\""
+    "start": "tsc-watch --onSuccess \"nodemon dist/app.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lillabbbbbb/todolist_express.git"
   },
   "author": "",
   "license": "ISC",
-  "description": "",
+  "bugs": {
+    "url": "https://github.com/lillabbbbbb/todolist_express/issues"
+  },
+  "homepage": "https://github.com/lillabbbbbb/todolist_express#readme",
   "dependencies": {
-    "express": "^4.21.0",
-    "morgan": "^1.10.0",
-    "path": "^0.12.7"
+    "buffer": "^6.0.3",
+    "express": "^5.1.0",
+    "mongoose": "^9.0.0",
+    "nodemon": "^3.1.11",
+    "tailwindcss": "^4.1.17",
+    "tsc-watch": "^7.2.0"
   },
   "devDependencies": {
-    "@types/express": "^4.17.21",
-    "@types/morgan": "^1.9.9",
-    "tsc-watch": "^6.2.0"
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.5",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.3"
   }
-  
-
 }
