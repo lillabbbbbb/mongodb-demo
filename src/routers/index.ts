@@ -1,6 +1,6 @@
 import {Request, Response, Router} from "express"
 import { parse } from "path"
-import { Todo, ITodo, User, IUser } from '../models/User'
+import { Todo, ITodo, User, IUser } from '../models/User.js'
 import { existsSync } from "fs"
 const router : Router = Router()
 
