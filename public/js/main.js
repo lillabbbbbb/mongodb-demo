@@ -108,8 +108,6 @@ document.getElementById("searchForm").addEventListener("submit", async(event) =>
 
     document.querySelector("div").appendChild(message)
 
-    document.getElementById("searchInput").value = ""
-
     document.getElementById("todoList").addEventListener("click", async(e) => {
       const clicked = e.target.closest('a.delete-task');
       if (!clicked) return;
@@ -119,7 +117,7 @@ document.getElementById("searchForm").addEventListener("submit", async(event) =>
       
       console.log(clicked.dataset.todo);
       
-      let todo = e.target.dataset.todo
+      let todo = clicked.innerText
       console.log("You just tried to remove " + todo)
 
       const res = await fetch("http://localhost:3000/update", {
@@ -132,5 +130,8 @@ document.getElementById("searchForm").addEventListener("submit", async(event) =>
 
       console.log(await res.json())
     })
+
+    
+    document.getElementById("searchInput").value = ""
 
 })

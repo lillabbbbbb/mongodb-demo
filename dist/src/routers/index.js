@@ -105,7 +105,7 @@ router.put("/update", async (req, res) => {
             //used ChatGPT for the code snippets below
             user.todos.splice(i, 1);
             let id = user.todos[i]?._id;
-            const todo = await User_1.Todo.findOneAndDelete(id);
+            const todo = await User_1.Todo.findByIdAndDelete(id);
             await todo?.save();
             await user.save();
             console.log();

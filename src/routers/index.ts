@@ -141,7 +141,7 @@ router.put("/update", async (req: Request, res : Response) => {
             user.todos.splice(i, 1)
 
             let id = user.todos[i]?._id
-            const todo = await Todo.findOneAndDelete(id)
+            const todo = await Todo.findByIdAndDelete(id)
             await todo?.save()
             await user.save()
 
