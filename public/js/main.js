@@ -1,5 +1,3 @@
-import 'materialize-css/dist/css/materialize.min.css';
-
 const message = document.createElement("p")
 
 document.getElementById("todoForm").addEventListener("submit", async(event) => {
