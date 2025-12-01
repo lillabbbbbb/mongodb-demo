@@ -1,6 +1,7 @@
 import mongoose, { Document } from "mongoose";
 interface ITodo extends Document {
     todo: string;
+    checked: boolean;
 }
 declare const Todo: mongoose.Model<ITodo>;
 interface IUser extends Document {

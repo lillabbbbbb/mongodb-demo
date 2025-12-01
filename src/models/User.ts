@@ -1,10 +1,12 @@
 import mongoose, {Document, Schema } from "mongoose"
 
 interface ITodo extends Document{
-    todo: string
+    todo: string,
+    checked: boolean
 }
 let todoSchema : Schema = new Schema<ITodo>({
-    todo: {type : String, required : true}
+    todo: {type : String, required : true},
+    checked:  {type : Boolean, default : false, required : false},
 })
 
 const Todo: mongoose.Model<ITodo> = mongoose.model<ITodo>("Todo", todoSchema)

@@ -113,5 +113,24 @@ router.put("/update", async (req, res) => {
         }
     }
 });
+router.put("/updateTodo", async (req, res) => {
+    let name = req.body.name;
+    let todo = req.body.todo;
+    let checked = req.body.checked;
+    const user = await User_1.User.findOne({ name: name });
+    if (!user) {
+        return res.status(500).json(`User ${name} not found`);
+    }
+    for (let i = 0; i < user.todos.length; i++) {
+        console.log(user.todos);
+        let id = user.todos[i]?._id;
+        if (user.todos[i]?.todo === todo) {
+            user.todos[i]?.updateOne({ _id: id }, { $set: { checked: !checked } });
+            await user.save();
+            console.log("Tod ");
+            return res.json(`Todo "${todo}" is now checked: ${!checked}`);
+        }
+    }
+});
 exports.default = router;
 //# sourceMappingURL=index.js.map

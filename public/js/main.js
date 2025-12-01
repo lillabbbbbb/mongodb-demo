@@ -63,10 +63,7 @@ document.getElementById("searchForm").addEventListener("submit", async(event) =>
         return
       }
 
-      let todos = []
-      items.forEach(elem => {
-        todos.push(elem.todo)
-      });
+
 
 
       //empty list first
@@ -76,11 +73,35 @@ document.getElementById("searchForm").addEventListener("submit", async(event) =>
 
 
       //Display todos in an unordered list
-      todos.forEach(item => {
+      items.forEach(elem => {
         let li = document.createElement("li")
-        li.innerHTML = `<a class="delete-task" data-todo="${item}">${item}</a>`
+        li.innerHTML = `
+            <input type="checkbox" checked="" id="myCheckBox" class="checkBoxes" name="vip" id="vip">
+            <a class="delete-task" data-todo="${elem.todo}">${elem.todo}</a>
+        `
 
         document.getElementById("todoList").appendChild(li)
+        
+        let checkbox = document.getElementById("myCheckBox")
+        checkbox.checked = elem.checked
+
+        checkbox.addEventListener("click", async(e) => {
+          console.log("Checkbox clicked")
+          let name = search
+          let todo = elem.todo
+          let checked = e.target.checked
+          console.log("name: " + name + ", todo: " + todo + ", checked: " + checked)
+
+          const res = await fetch("http://localhost:3000/updateTodo", {
+            method: "PUT",
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: name, todo: todo, checked: checked})
+          })
+          console.log(await res.json())
+        })
+
       });
 
     document.querySelector("div").appendChild(message)

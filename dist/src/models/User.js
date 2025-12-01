@@ -36,7 +36,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = exports.Todo = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
 let todoSchema = new mongoose_1.Schema({
-    todo: { type: String, required: true }
+    todo: { type: String, required: true },
+    checked: { type: Boolean, default: false, required: false },
 });
 const Todo = mongoose_1.default.model("Todo", todoSchema);
 exports.Todo = Todo;
