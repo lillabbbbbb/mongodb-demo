@@ -42,7 +42,7 @@ const Todo = mongoose_1.default.model("Todo", todoSchema);
 exports.Todo = Todo;
 let userSchema = new mongoose_1.Schema({
     name: { type: String, required: true },
-    todos: { type: Todo, required: true },
+    todos: { type: [todoSchema], required: true },
 });
 const User = mongoose_1.default.model("User", userSchema);
 exports.User = User;

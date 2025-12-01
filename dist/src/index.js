@@ -1,24 +1,10 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Users = void 0;
 const express_1 = require("express");
-const fs_1 = __importDefault(require("fs"));
+const User_1 = require("./models/User");
 const router = (0, express_1.Router)();
 exports.Users = [];
-fs_1.default.readFile("data.json", "utf8", (err, data) => {
-    if (err) {
-        console.log(err);
-    }
-    try {
-        exports.Users = JSON.parse(data);
-    }
-    catch (error) {
-        console.log(`Error parsing JSON: ${error}`);
-    }
-});
 //API endpoints
 router.post("/add", (req, res) => {
     const name = req.body.name;
@@ -38,6 +24,21 @@ router.post("/add", (req, res) => {
     }
     console.log("Sending message:", `Todo "${item}" added successfully for user ${name}. Their todos: ${user.todos}`); // debug
     res.json({ message: `Todo added successfully for user ${name}.` });
+});
+router.get("/todos/:id", async (req, res) => {
+    try {
+        const users = await User_1.User.find();
+        if (!users) {
+            return res.status(404).json({ message: "No poems found" });
+        }
+        res.json({
+            users
+        });
+    }
+    catch (error) {
+        console.log(`Error while fetching users: ${error}`);
+        res.status(500).json("Internal server error");
+    }
 });
 router.get("/todos/:id", (req, res) => {
     try {

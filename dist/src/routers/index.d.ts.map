@@ -1,0 +1,1 @@
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../src/routers/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAoB,MAAM,EAAC,MAAM,SAAS,CAAA;AAIjD,QAAA,MAAM,MAAM,EAAG,MAAiB,CAAA;AAGhC,MAAM,MAAM,KAAK,GAAG;IAChB,IAAI,EAAG,MAAM,CAAC;IACd,KAAK,EAAG,MAAM,EAAE,CAAA;CACnB,CAAA;AAED,eAAO,IAAI,KAAK,EAAG,KAAK,EAAO,CAAA;AA+I/B,eAAe,MAAM,CAAA"}

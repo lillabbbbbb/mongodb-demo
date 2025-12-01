@@ -50,15 +50,23 @@ document.getElementById("searchForm").addEventListener("submit", async(event) =>
     }
 
       const data = await (await fetch('http://localhost:3000/todos/' + search)).json()
+      console.log(data)
       
       let items
-      if(data.todos){
-        items = data.todos.todos
-        console.log("Received: " + items)
+      console.log(data.user.todos)
+      if(data.user.todos){
+        items = data.user.todos
+        console.log("Received: ")
+        console.log(items)
       }else{
         console.log("User not found")
         return
       }
+
+      let todos = []
+      items.forEach(elem => {
+        todos.push(elem.todo)
+      });
 
 
       //empty list first
@@ -68,32 +76,12 @@ document.getElementById("searchForm").addEventListener("submit", async(event) =>
 
 
       //Display todos in an unordered list
-      items.forEach(item => {
+      todos.forEach(item => {
         let li = document.createElement("li")
         li.innerHTML = `<a class="delete-task" data-todo="${item}">${item}</a>`
 
         document.getElementById("todoList").appendChild(li)
       });
-
-      //Delete todo
-      let deleteButton = document.createElement("button")
-      deleteButton.innerText = "Delete"
-      deleteButton.setAttribute("id", "deleteUser")
-      document.getElementById("div2").appendChild(deleteButton)
-      deleteButton.addEventListener("click", async() => {
-        const res = await fetch('http://localhost:3000/delete', {
-            method: "DELETE",
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ id: search })
-            });
-        
-        let data = await (await res.json())
-        console.log(data)
-          
-      })
-
 
     document.querySelector("div").appendChild(message)
 
@@ -119,7 +107,7 @@ document.getElementById("searchForm").addEventListener("submit", async(event) =>
         body: JSON.stringify({ id: search, todo: todo })
       })
 
-      console.log(await res.json)
+      console.log(await res.json())
     })
 
 })

@@ -1,5 +1,5 @@
 import mongoose, { Document } from "mongoose";
-interface ITodo {
+interface ITodo extends Document {
     todo: string;
 }
 declare const Todo: mongoose.Model<ITodo>;
