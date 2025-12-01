@@ -1,27 +1,30 @@
-import { Router } from "express";
-import { Todo, User } from '../models/User.js';
-const router = Router();
-export let Users = [];
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Users = void 0;
+const express_1 = require("express");
+const User_1 = require("../models/User");
+const router = (0, express_1.Router)();
+exports.Users = [];
 //API endpoints
 router.post("/add", async (req, res) => {
     const name = req.body.name;
     const todo = req.body.todo;
     try {
-        const existingTodo = await Todo.findOne({ todo: req.body.todo });
+        const existingTodo = await User_1.Todo.findOne({ todo: req.body.todo });
         if (existingTodo) {
             console.log("This todo already exists");
             return res.status(403).json("Todo already exists");
         }
         //create new todo record
-        const todo = new Todo({
+        const todo = new User_1.Todo({
             todo: req.body.todo
         });
         await todo.save();
         console.log("New todo saved!");
-        const existingUser = await User.findOne({ name: req.body.name });
+        const existingUser = await User_1.User.findOne({ name: req.body.name });
         if (!existingUser) {
             //create new user with this todo
-            const user = new User({
+            const user = new User_1.User({
                 name: req.body.name,
                 todos: [todo],
             });
@@ -42,7 +45,7 @@ router.post("/add", async (req, res) => {
 });
 router.get("/todos", async (req, res) => {
     try {
-        const users = await User.find();
+        const users = await User_1.User.find();
         if (!users) {
             return res.status(404).json({ message: "No poems found" });
         }
@@ -58,7 +61,7 @@ router.get("/todos", async (req, res) => {
 router.get("/todos/:id", async (req, res) => {
     try {
         let id = req.params.id;
-        const user = await User.findOne({ name: id });
+        const user = await User_1.User.findOne({ name: id });
         if (!user) {
             return res.status(404).json({ message: "Poem not found" });
         }
@@ -77,11 +80,11 @@ router.delete("/delete", (req, res) => {
     console.log("ID: " + id);
     let message = "User not found.";
     if (id) {
-        for (let i = 0; i < Users.length; i++) {
-            if (Users[i].name === id) {
-                console.log("Removing user " + Users[i].name + " and their notes.");
-                Users.splice(i, 1);
-                console.log("Users left: " + Users);
+        for (let i = 0; i < exports.Users.length; i++) {
+            if (exports.Users[i].name === id) {
+                console.log("Removing user " + exports.Users[i].name + " and their notes.");
+                exports.Users.splice(i, 1);
+                console.log("Users left: " + exports.Users);
                 message = "User deleted successfully.";
                 break;
             }
@@ -92,7 +95,7 @@ router.delete("/delete", (req, res) => {
 router.put("/update", async (req, res) => {
     let name = req.body.id;
     let todo = req.body.todo;
-    const user = await User.findOne({ name: name });
+    const user = await User_1.User.findOne({ name: name });
     if (!user) {
         return res.status(500).json(`User ${name} not found`);
     }
@@ -102,7 +105,7 @@ router.put("/update", async (req, res) => {
             //used ChatGPT for the code snippets below
             user.todos.splice(i, 1);
             let id = user.todos[i]?._id;
-            const todo = await Todo.findOneAndDelete(id);
+            const todo = await User_1.Todo.findOneAndDelete(id);
             await todo?.save();
             await user.save();
             console.log();
@@ -114,7 +117,7 @@ router.put("/updateTodo", async (req, res) => {
     let name = req.body.name;
     let todo = req.body.todo;
     let checked = req.body.checked;
-    const user = await User.findOne({ name: name });
+    const user = await User_1.User.findOne({ name: name });
     if (!user) {
         return res.status(500).json(`User ${name} not found`);
     }
@@ -129,4 +132,4 @@ router.put("/updateTodo", async (req, res) => {
         }
     }
 });
-export default router;
+exports.default = router;

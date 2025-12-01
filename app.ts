@@ -1,7 +1,7 @@
 import express, {Express} from "express"
 import { constants } from "buffer" 
-import path, { dirname } from "path"
-import router from "./src/routers/index.js"
+import path from "path"
+import router from "./src/routers/index"
 import fs from "fs"
 import mongoose, { Connection } from "mongoose"
 

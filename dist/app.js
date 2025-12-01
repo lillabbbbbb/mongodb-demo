@@ -1,18 +1,23 @@
-import express from "express";
-import path from "path";
-import router from "./src/routers/index.js";
-import mongoose from "mongoose";
-const app = express();
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const path_1 = __importDefault(require("path"));
+const index_1 = __importDefault(require("./src/routers/index"));
+const mongoose_1 = __importDefault(require("mongoose"));
+const app = (0, express_1.default)();
 const port = 3000;
 const mongoDB = "mongodb://127.0.0.1:27017/testdb";
-mongoose.connect(mongoDB);
-mongoose.Promise = Promise;
-const db = mongoose.connection;
+mongoose_1.default.connect(mongoDB);
+mongoose_1.default.Promise = Promise;
+const db = mongoose_1.default.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "../public")));
-app.use("/", router);
+app.use(express_1.default.json());
+app.use(express_1.default.urlencoded({ extended: false }));
+app.use(express_1.default.static(path_1.default.join(__dirname, "../public")));
+app.use("/", index_1.default);
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
