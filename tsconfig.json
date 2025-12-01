@@ -37,7 +37,7 @@
     "strict": true,
     "jsx": "react-jsx",
     //"verbatimModuleSyntax": true,
-    "isolatedModules": true,
+    //"isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "allowSyntheticDefaultImports": true,
     "moduleDetection": "force",
