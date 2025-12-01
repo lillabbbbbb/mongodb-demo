@@ -75,10 +75,12 @@ document.getElementById("searchForm").addEventListener("submit", async(event) =>
       items.forEach(elem => {
         let li = document.createElement("li")
         li.innerHTML = `
+          <label>
             <input type="checkbox" id="myCheckBox" class="checkBoxes" name="vip" id="vip">
             <span>
               <a class="delete-task" href="#" data-todo="${elem.todo}">${elem.todo}</a>
             </span>
+          </label>
         `
 
         document.getElementById("todoList").appendChild(li)
