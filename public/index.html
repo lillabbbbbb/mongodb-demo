@@ -3,30 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+
+    
     <script src="js/main.js" defer></script>
     <title>Document</title>
 </head>
 <body>
-    <div>
-        <form action="submit" id="todoForm">
-            <label for="">Name</label>
-            <input type="text" id="userInput">
-            <label for="">To-do</label>
-            <input type="text" id="todoInput">
-            <button type="submit" id="submit-data">Submit</button>
-        </form>
-    </div>
-
-    <div id="div2">
-        <form action="submit" id="searchForm">
-            <label for="">Search</label>
-            <input type="text" id="searchInput">
-            <button type="submit" id="search">Search</button>
-        </form>
-
-        <ul id="todoList">
-
+    <nav>
+        <div class="nav-wrapper">
+        <a href="#" class="brand-logo">To-do!</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li>About</li>
+        
         </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="col">
+            <form action="submit" id="todoForm">
+                <label for="">Name</label>
+                <input type="text" id="userInput">
+                <label for="">To-do</label>
+                <input type="text" id="todoInput">
+                <button class="btn" type="submit" id="submit-data">Submit</button>
+            </form>
+        </div>
+
+        <div id="div2" class="col">
+            <form action="submit" id="searchForm">
+                <label for="">Search</label>
+                <input type="text" id="searchInput">
+                <button class="btn" type="submit" id="search">Search</button>
+            </form>
+
+            <ul id="todoList">
+
+            </ul>
+        </div>
     </div>
     
 </body>

@@ -1,3 +1,5 @@
+import 'materialize-css/dist/css/materialize.min.css';
+
 const message = document.createElement("p")
 
 document.getElementById("todoForm").addEventListener("submit", async(event) => {
@@ -76,8 +78,10 @@ document.getElementById("searchForm").addEventListener("submit", async(event) =>
       items.forEach(elem => {
         let li = document.createElement("li")
         li.innerHTML = `
-            <input type="checkbox" checked="" id="myCheckBox" class="checkBoxes" name="vip" id="vip">
-            <a class="delete-task" data-todo="${elem.todo}">${elem.todo}</a>
+            <input type="checkbox" id="myCheckBox" class="checkBoxes" name="vip" id="vip">
+            <span>
+              <a class="delete-task" href="#" data-todo="${elem.todo}">${elem.todo}</a>
+            </span>
         `
 
         document.getElementById("todoList").appendChild(li)
