@@ -21,7 +21,6 @@ router.post("/add", async (req: Request, res : Response) => {
         const existingTodo: ITodo | null = await Todo.findOne({todo: req.body.todo})
         if (existingTodo) {
             console.log("This todo already exists")
-            return res.status(403).json("Todo already exists")
         }
 
         //create new todo record

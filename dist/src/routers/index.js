@@ -13,7 +13,6 @@ router.post("/add", async (req, res) => {
         const existingTodo = await User_1.Todo.findOne({ todo: req.body.todo });
         if (existingTodo) {
             console.log("This todo already exists");
-            return res.status(403).json("Todo already exists");
         }
         //create new todo record
         const todo = new User_1.Todo({
@@ -105,7 +104,7 @@ router.put("/update", async (req, res) => {
             //used ChatGPT for the code snippets below
             user.todos.splice(i, 1);
             let id = user.todos[i]?._id;
-            const todo = await User_1.Todo.findByIdAndDelete(id);
+            const todo = await User_1.Todo.findOneAndDelete(id);
             await todo?.save();
             await user.save();
             console.log();
