@@ -53,7 +53,6 @@ document.getElementById("searchForm").addEventListener("submit", async(event) =>
       console.log(data)
       
       let items
-      console.log(data.user.todos)
       if(data.user.todos){
         items = data.user.todos
         console.log("Received: ")
