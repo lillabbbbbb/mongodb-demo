@@ -39,7 +39,7 @@
     //"verbatimModuleSyntax": true,
     //"isolatedModules": true,
     "noUncheckedSideEffectImports": true,
-    "allowSyntheticDefaultImports": true,
+    //"allowSyntheticDefaultImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
   }
